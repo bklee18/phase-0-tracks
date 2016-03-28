@@ -13,6 +13,7 @@ There are three states of a file in git. A committed file is a saved file that t
 A service like GitHub prevents work from being lost locally. For example, if a repository is damaged on a local computer, having it saved in GitHub allows the user to clone the same repository into another computer. GitHub also allows many users to work on the same project, cloning repositories and working independently on the same code while keeping the master's integrity.
 
  Git is a source control system users employ to manage versions of a project in repositories. GitHub is an online service that stores git files in a cloud so users can collaborate on a project and manage versions of the same project.
+ 
 
 * What is a branch and why would you use one?
 
