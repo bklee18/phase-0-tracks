@@ -8,6 +8,20 @@
 
 * input type="checkbox" Defines checkbox
 
+* input value= 
+	* The value attribute specifies the value of an <input> element.
+
+The value attribute is used differently for different input types:
+
+For "button", "reset", and "submit" - it defines the text on the button
+For "text", "password", and "hidden" - it defines the initial (default) value of the input field
+For "checkbox", "radio", "image" - it defines the value associated with the input (this is also the value that is sent on submit)
+
+* input name= 
+	* The name attribute specifies the name of an <input> element.
+
+The name attribute is used to reference elements in a JavaScript, or to reference form data after a form is submitted
+
  * form action : The action attribute specifies where to send the form-data when a form is submitted
 
  * form method :  The method attribute specifies how to send form-data (the form-data is sent to the page specified in the action attribute).
