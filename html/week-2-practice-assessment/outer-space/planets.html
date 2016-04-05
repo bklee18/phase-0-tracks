@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Planets</title>
+  </head>
+  <body>
+    <div>
+      <p>
+        We have 8 planets in our solar system. In order from the closest to farthest from our sun are listed below.
+      </p>
+        <ol>
+          <li>Mercury</li>
+          <li>Venus</li>
+          <li>Earth</li>
+          <li>Mars</li>
+          <li>Jupiter</li>
+          <li>Saturn</li>
+          <li>Uranus</li>
+          <li>Neptune</li>
+        </ol>
+    </div>
+    <div>
+      <p>
+        Enter your own planet in the form below
+      </p>
+      <form action="success.html" method="post">
+        <div>
+          <label>Planet Name</label>
+          <input type="text" name="planet">
+        </div>
+        <div>
+          <label>Planet Size</label>
+          <input type="number" name="size">
+        </div>
+        <div>
+          <label>Are you sure this is a planet?</label>
+          <input type="checkbox" name="cb" value="agree"> I am sure!
+        </div>
+        <div>
+          <button type="submit">Make your planet</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
