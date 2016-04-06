@@ -11,8 +11,12 @@
 
 
 
-.list {
+ul {
   font-size: .8em;
+}
+
+h1:hover {
+  color: green;
 }
 
 ul.list li:first-of-type {
