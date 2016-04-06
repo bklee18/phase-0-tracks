@@ -1,0 +1,24 @@
+#contact-info p {
+  font-size: .8em;
+}
+
+.job {
+  background-color: #e9e5dc;
+  border-radius: 10px;
+  padding: 0.1px 1px 1px 50px;
+  margin: 20px 150px 20px 20px;
+}
+
+
+
+ul {
+  font-size: .8em;
+}
+
+h1:hover {
+  color: green;
+}
+
+ul.list li:first-of-type {
+  font-size: 1.2em;
+}
