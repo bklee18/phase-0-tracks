@@ -1,0 +1,23 @@
+section#contact-info {
+font-size:.8em;
+}
+.job {
+background-color: #e9e5dc ;
+border-radius: 25px;
+padding: 7px;
+margin: 7px;
+max-width: 55%;
+padding-left: 30px;
+}
+.acomp {
+font-size: .8em;
+}
+
+.job::first-letter {
+color: white;
+font-weight: bold;
+text-shadow: grey  2px 2px;
+}
+body section h2{
+color: grey;    
+}
