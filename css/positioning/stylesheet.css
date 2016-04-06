@@ -7,20 +7,20 @@
   width: 60%;
 }
 
-.octopus #octo {
-  position: absolute;
+#octo {
+  position: relative;
   z-index: 0;
 }
 
-.octopus #glasses {
+#glasses {
   position: absolute;
   top: 100px;
   left: 40px;
   z-index: 1;
 }
 
-.octopus #hat {
-  position:absolute;
+#hat {
+  position: absolute;
   z-index:1;
   top: -75px;
   left: -15px;
