@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #contact-info {
  font-size: .8em;
 }
@@ -12,12 +13,33 @@
 
 ul {
  font-size: .8em;
+=======
+#contact-info p {
+  font-size: .8em;
+}
+
+.job {
+  background-color: #e9e5dc;
+  border-radius: 10px;
+  padding: 0.1px 1px 1px 50px;
+  margin: 20px 150px 20px 20px;
+}
+
+
+
+ul {
+  font-size: .8em;
+>>>>>>> 776b4aff630e02d4f95aeed93a5ca898f3aecce0
 }
 
 h1:hover {
   color: green;
 }
 
+<<<<<<< HEAD
 ol li {
+=======
+ul.list li:first-of-type {
+>>>>>>> 776b4aff630e02d4f95aeed93a5ca898f3aecce0
   font-size: 1.2em;
 }
