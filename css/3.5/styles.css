@@ -35,3 +35,13 @@ div p {
   font-style: italic;
 }
 
+
+/*Question 9 table CSS*/
+
+th {
+  text-decoration: underline;
+}
+
+tr:nth-child(even) {
+  background-color: #A0A0A0 ;
+}
