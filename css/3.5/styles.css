@@ -1,3 +1,5 @@
-p {
-  font-size: 2em;
+body {
+  font-family: Verdana, serif;
+  text-size: .8em;
+  background-color: #FF9933;
 }
