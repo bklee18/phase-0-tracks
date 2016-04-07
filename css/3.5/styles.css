@@ -2,12 +2,36 @@ body {
   font-family: Verdana, serif;
   text-size: .8em;
   background-color: #FF9933;
+  width: 1000px;
 }
 
-div p:first-chlid {
+nav {
+  width: 18%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+nav ul {
+  list-style: upper-roman;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 2px;
+}
+
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+  color: red;
+}
+main {
+  width: 80%;
+  display:inline-block;
+}
+
+div p {
   border: 2px solid purple;
   padding: 10px;
   margin: 8px;
-  background-color: #CCFF66;
+  background-color: #6699FF;
   font-style: italic;
 }
+
