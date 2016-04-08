@@ -1,7 +1,21 @@
+
+main {
+  display: inline-block;
+  vertical-align: top;
+  width: 70%;
+}
+
+body {
+  max-width: 960px;
+  margin: auto;
+}
+
+
 blockquote {
   border-left: 5px solid blue;
   padding: 15px;
   margin-left: 0px;
+  float: left;
 }
 
 cite {
@@ -12,6 +26,15 @@ cite {
 #external-links ul {
   list-style-type: none;
   padding-left: 0px;
+}
+ 
+
+
+  
+#external-links {
+  display: inline-block;
+  vertical-align: top;
+  width: 20%;
 }
 
 /* you're welcome to edit the
@@ -30,3 +53,27 @@ figcaption {
   font-style: italic;
   text-align: right;
 }
+
+@media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+    h1 {
+      font-size: smaller;
+    }
+
+    p {
+      font-size: smaller;
+    }
+@media only screen and (max-width: 500px) {
+ #external-links {
+  width:100%;
+
+  main {
+    width:100%;
+  }
+ 
+ }
