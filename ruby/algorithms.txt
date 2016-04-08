@@ -1,0 +1,29 @@
+Robot using elevator algorithm:
+  - If destination floor is above current floor:
+    Press button with arrow pointing up.
+  If desination floor is below current floor:
+    Press button with arrow pointing down.
+  Otherwise:
+    You have reached your destination floor!
+  
+  - When elevator arrives and opens:
+    Enter elevator, turn around 180 degrees.
+    Scan left side for control panel.
+    Otherwise control panel is on right side.
+  
+  - Once control panel is located, scan top row of numbers:
+    If destination floor number is on row of buttons, press corresponding button.
+    Otherwise, scan the next row below and repeat line 15 instruction.
+  
+  - Once destination floor button is pressed, wait until elevator indicates you have reached your destination floor. Then exit elevator.
+  
+  
+
+Making morning coffee:
+  - Enter kitchen, open left cupboard. Locate coffee filters, remove one coffee filter. Locate coffee grounds container, remove coffee grounds container.
+  - Place filter and container on kitchen counter.
+  - Locate coffee machine on kitchen counter. Open top compartment, place coffee filter in basket. Open coffee grounds containerand place 4 tablespoons worth of ground coffee into filter.
+  - Close coffee machine top compartment, return coffee grounds container to cupboard.
+  - Remove coffee machine pitcher, place pitcher in kitchen sink below water spout. Turn on cold water, leave water on until water reaches 4 marker on pitcher, then turn off cold water.
+  - Place coffee pitcher back into coffee machine, then press on button.
+  
