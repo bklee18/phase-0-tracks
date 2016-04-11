@@ -1,0 +1,35 @@
+1. 
+ Colors
+ Text, font family font style
+ background
+
+2.
+	
+inline
+external 
+internal
+
+best is external to keep the html clean and allows for separation of style and content to allow the site to grow.
+
+3.
+
+selectors select what will be styled in the html
+class
+id
+element
+
+4. 
+
+Everything is inside a box, within a box. You are viewing a box right now. CSS is used to style these boxes.
+
+5. 
+
+Cascading effect follows the rule of the stack. Two same rules in the CSS, the latter rule will be applied, hence the cascading quality of CSS.
+
+6.
+
+Mobile first. Design for the mobile first and use breakpoints to change for desktop users/ tablet users.
+
+use percentages, this lets the browser make intuitive decisions
+smaller screen = smaller text
+make images fit the screen.
