@@ -1,0 +1,40 @@
+* {
+  font-family: Helvetica;
+}
+
+h1, header p, .column-1, .column-2, footer {
+  border: 1px solid black;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+  color: darkorange;
+}
+
+.column-1, .column-2 {
+  width: 48%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+footer {
+  text-align: center;
+}
+
+a:link {
+  color: darkorange;
+}
+
+a:hover {
+  color: lightblue;
+}
+
+a:active {
+  color: pink;
+}
+
+details {
+  color: darkorange;
+}
