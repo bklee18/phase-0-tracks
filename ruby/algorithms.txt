@@ -1,0 +1,43 @@
+Elavator Robot
+1. Determine master's desired floor.
+2. Assign number to desired floor
+3. Locate Panel
+4. Determine current location
+5. If master's desired floor is greater than current location push up arrow.
+5. Else if push down arrow.
+6. Else if some floor stay where you are.
+7. Wait for Elevator.
+8. Enter Elevator when doors open
+9. Turn 180 degrees toward doors.
+10. Locate panel
+12. Push corresponding number of master's desired floor.
+13. Stop.
+
+Taking a shower
+1. Go into Closet 
+2. Take out new clothes and towel
+3. Go to the Bathroom
+4. Turn on the Light
+5. Hang new clothes
+6. HAng towel
+7. Open shower curtain
+8. Turn knob of water to medium tempterature
+9. Push the shower button
+10. Undress.
+11. Enter Tub
+12. Close shower curtain
+13. Locate and get soap
+14. Lather seld.
+15.	Wash self
+16. Turn water off
+17. Open shower curtain
+18. Exit shower area
+19. Grab towel
+20. Dry off
+21. Grab new clothes
+22. Dress yourself
+23. Turn light off
+24. Exit Bathroom
+25. Live your life
+26. Repeat after 24 hours or sooner if necessary. 
+ 
