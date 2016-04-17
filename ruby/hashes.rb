@@ -18,14 +18,11 @@ def interior_designer
   interior_design_questionnaire[:rooms]=gets.chomp
   
   puts "Do you have kids? (y/n)"
-  if gets.chomp!=("y"||"n")
-    puts "Please enter in 'y' or 'n'"
-    puts "Do you have kids? (y/n)"
-  end
-  if gets.chomp=="y"
-      interior_design_questionnaire[:kids]=true
-  elsif gets.chomp=="n"
-      interior_design_questionnaire[:kids]=false
+  kids=gets.chomp
+  if kids=="y"
+    interior_design_questionnaire[:kids]=true
+  elsif kids=="n"
+    interior_design_questionnaire[:kids]=false
   end
   
   puts "Enter your age: "
@@ -37,8 +34,25 @@ def interior_designer
   puts "Favorite Color:"
   interior_design_questionnaire[:fave_color]=gets.chomp
   
-  p interior_design_questionnaire
-  
+  puts
+  puts "Review of information entered:"
+  interior_design_questionnaire.each {|key, value| puts "#{key}: #{value}" }
+  puts "If you need to change an ansswer, please write the value needing change, otherwise write 'none'"
+  answer=gets.chomp
+  if answer=='none'
+    puts "Great! Your information is now stored."
+    return interior_design_questionnaire
+  end
+  answer=answer.to_sym
+  if interior_design_questionnaire.has_key?(answer)
+    puts "Please re-enter the following value"
+    puts answer.to_s
+    value=gets.chomp
+    interior_design_questionnaire[answer]=value
+  end
+  puts 
+  interior_design_questionnaire.each {|key, value| puts "#{key}: #{value}" }
+  interior_design_questionnaire
 end
 
 interior_designer
