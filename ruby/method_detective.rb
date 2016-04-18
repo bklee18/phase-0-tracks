@@ -25,13 +25,13 @@
 “The case of the disappearing last letter”.chop
 # => “The case of the disappearing last lette”
 
-“The mystery of the missing first letter”.reverse.chop.reverse
+"The mystery of the missing first letter".reverse.chop.reverse ..slice(1..39)
 # => “he mystery of the missing first letter”
 
-"Elementary  ,    my   dear      Watson!".squeeze(" ")
+"Elementary,    my   dear      Watson!".squeeze(" ") .split.join
 # => “Elementary, my dear Watson!”
 
-#“z”.ord
+“z”.ord
 # => 122 
 # (What is the significance of the number 122 in relation to the character z?)
 
