@@ -36,6 +36,23 @@ def spy_alias full_name
     end
     next_consonant
   end
-  alias_name.join('')
+  alias_name=alias_name.join('').split(' ')
+  alias_name.map! {|name| name.capitalize}
+  alias_name.join(' ')
 end
 
+#User Interface
+
+puts "Welcome Agent"
+name=nil
+alias_hash={}
+until name==""||name=="quit"
+  puts "Enter your first and last name with a space in between to be aliased (EX: 'James Bond'):"
+  name=gets.chomp
+  alias_name=spy_alias name
+  alias_hash.merge!(name=>alias_name)
+  puts "To enter another name, enter 'next'. Press enter or type 'quit' when finished."
+  name=gets.chomp
+end
+
+alias_hash.each {|name, alias_name| puts "#{alias_name} is actually #{name}"}
