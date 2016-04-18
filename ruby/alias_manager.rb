@@ -24,10 +24,10 @@ def spy_alias full_name
   alias_name.map! do |letter|
     next_consonant=letter
     consonants.each_index do |index|
-      if letter==consonants[index]
-        next_consonant=consonants[index+1]
-      elsif consonants[index]=='z'&&letter==consonants[index]
+      if consonants[index]=='z'&&letter==consonants[index]
         next_consonant='b'
+      elsif letter==consonants[index]
+        next_consonant=consonants[index+1]
       end
     end
     next_consonant
@@ -37,17 +37,17 @@ def spy_alias full_name
 end
 
 #User Interface
-
-puts "Welcome Agent"
+puts "\n"+"Welcome Agent".rjust(50)+"\n "
 name=nil
 alias_hash={}
+
 until name==""||name=="quit"
-  puts "Enter your first and last name with a space in between to be aliased (EX: 'James Bond'):"
+  puts "Enter first and last name with a space in between to be aliased (EX: 'James Bond'). Press enter or type 'quit' when finished."
   name=gets.chomp
-  alias_name=spy_alias name
-  alias_hash.merge!(name=>alias_name)
-  puts "To enter another name, enter 'next'. Press enter or type 'quit' when finished."
-  name=gets.chomp
+  if name!=(''||'quit')
+    alias_name=spy_alias name
+    alias_hash.merge!(name=>alias_name)
+  end
 end
 
-alias_hash.each {|name, alias_name| puts "#{alias_name} is actually #{name}"}
+alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
