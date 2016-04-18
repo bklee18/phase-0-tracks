@@ -4,11 +4,7 @@
 
 def spy_alias full_name
   #Step #1, swap first and last name assuming input is "First_name Last_name"
-  
-  alias_name = full_name.downcase.split(' ')
-  alias_name.reverse!
-  alias_name=alias_name.join(' ')
-  alias_name=alias_name.split(//)
+  alias_name = full_name.downcase.split(' ').reverse!.join(' ').split(//)
   #Turn alias_name into an array for each letter to one index
   #Step #2, I'm plan to make two arrays, one for vowels and one for consonants. Run an iteration on vowels in string and advance on vowel array, then run iteration for consonatns
   vowels=['a','e','i','o','u']
@@ -36,9 +32,8 @@ def spy_alias full_name
     end
     next_consonant
   end
-  alias_name=alias_name.join('').split(' ')
-  alias_name.map! {|name| name.capitalize}
-  alias_name.join(' ')
+  
+  alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
 
 #User Interface
