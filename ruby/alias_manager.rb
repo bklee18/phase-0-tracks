@@ -51,3 +51,9 @@ until name==""||name=="quit"
 end
 
 alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
+
+
+
+#Possible updates/refactor--> Use .chars (or .each_char.to_a) on my strings I wish to change to arrays. bshyman use a hash to assign next letter, could it be more
+#efficient?https://github.com/bshyman/phase-0-tracks/blob/master/ruby/alias_manager.rb
+#
