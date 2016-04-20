@@ -35,8 +35,9 @@
 "The mystery of the missing first letter".reverse.chop.reverse
 # => “he mystery of the missing first letter”
 
-# “Elementary  ,    my   dear      Watson!”.<???>""
-"Elementary  ,    my   dear      Watson!".gsub(/\s+/," ")
+# “Elementary  ,    my   dear      Watson!”.<???>"" 
+
+"Elementary  ,    my   dear      Watson!".gsub(/\s+,/, ",").gsub(/\s+/," ")
 # => “Elementary, my dear Watson!”
 
 #“z”.<???>
