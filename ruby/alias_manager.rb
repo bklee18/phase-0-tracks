@@ -6,13 +6,16 @@ def spy_alias full_name
   #Step #1, swap first and last name assuming input is "First_name Last_name"
   alias_name = full_name.downcase.split(' ').reverse!.join(' ').split(//)
   #Turn alias_name into an array for each letter to one index
-  #Step #2, I'm plan to make two arrays, one for vowels and one for consonants. Run an iteration on vowels in string and advance on vowel array, then run iteration for consonatns
+  #Step #2, I'm plan to make two arrays, one for vowels and one for consonants. Run an iteration on vowels in string and advance on vowel array, then run iteration for consonants
   vowels=['a','e','i','o','u']
   alias_name.map! do |letter|
     next_vowel=letter
     vowels.each_index do |index|
-      if vowels[index]=='u'&&letter==vowels[index]
-        next_vowel='a'
+      #Made code more robust using relative index values instead of hard cases for the edge case.
+      # if vowels[index]=='u'&&letter==vowels[index]
+        # next_vowel='a'
+      if letter==vowels[-1]
+        next_vowel=vowels[0]
       elsif letter==vowels[index]
         next_vowel=vowels[index+1]
       end
@@ -24,8 +27,11 @@ def spy_alias full_name
   alias_name.map! do |letter|
     next_consonant=letter
     consonants.each_index do |index|
-      if consonants[index]=='z'&&letter==consonants[index]
-        next_consonant='b'
+      #Made code more robust using relative index values instead of hard cases for the edge case.
+      # if consonants[index]=='z'&&letter==consonants[index]
+      #   next_consonant='b'
+      if letter==consonants[-1]
+        next_consonant=consonants[0]
       elsif letter==consonants[index]
         next_consonant=consonants[index+1]
       end
