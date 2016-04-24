@@ -12,7 +12,7 @@
 # =>  Then loop through the consonants array and replace with the appropriate next consonant. Also take care of edge case.
 # =>Name array should now be aliased, transfrom back into a string input to be returned.
 
-def spy_alias full_name
+def spy_alias1 full_name
   alias_name = full_name.downcase.split(' ').reverse!.join(' ').split(//)
   vowels=['a','e','i','o','u']
   alias_name.map! do |letter|
@@ -43,18 +43,6 @@ def spy_alias full_name
   alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
 
-# puts "\n"+"Welcome Agent".rjust(50)+"\n "
-# name=nil
-# alias_hash={}
-# until name==""||name=="quit"
-#   puts "Enter first and last name with a space in between to be aliased (EX: 'James Bond'). Press enter or type 'quit' when finished."
-#   name=gets.chomp
-#   if name!=(''||'quit')
-#     alias_name=spy_alias name
-#     alias_hash.merge!(name=>alias_name)
-#   end
-# end
-# alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
 
 #################################################################################
 #2nd approach
@@ -88,19 +76,6 @@ def spy_alias2 full_name
   end
   alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
-
-# puts "\n"+"Welcome Agent".rjust(50)+"\n "
-# name=nil
-# alias_hash={}
-# until name=="" || name== "quit"
-#   puts "Enter first and last name with a space in between to be aliased (EX: 'James Bond'). Press enter or type 'quit' when finished."
-#   name=gets.chomp
-#   unless name=='quit'|| name==''
-#     alias_name=spy_alias2 name
-#     alias_hash.merge!(name=>alias_name)
-#   end
-# end
-# alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
 
 
 #################################################################################
@@ -138,6 +113,8 @@ def spy_alias3 full_name
   alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
 
+
+#User Interface: can use spy_alias1, spy_alias2, spy_alias3
 puts "\n"+"Welcome Agent".rjust(50)+"\n "
 name=nil
 alias_hash={}
