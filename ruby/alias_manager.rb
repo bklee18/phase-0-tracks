@@ -56,7 +56,6 @@ end
 # end
 # alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
 
-
 #################################################################################
 #2nd approach
 # Compare each letter of a word to a letters hash 
@@ -114,7 +113,6 @@ end
 # =>Loop through the array and apply the appropriate method to advance.
 # =>Transform name back to string input and return
 
-
 def advance_letter letter
   vowel='aeiou'
   consonant='bcdfghjklmnpqrsvwxyz'
@@ -139,7 +137,6 @@ def spy_alias3 full_name
   alias_name.map! {|letter| advance_letter letter}
   alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
-
 
 puts "\n"+"Welcome Agent".rjust(50)+"\n "
 name=nil
