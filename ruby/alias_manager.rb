@@ -46,7 +46,6 @@ end
 # puts "\n"+"Welcome Agent".rjust(50)+"\n "
 # name=nil
 # alias_hash={}
-
 # until name==""||name=="quit"
 #   puts "Enter first and last name with a space in between to be aliased (EX: 'James Bond'). Press enter or type 'quit' when finished."
 #   name=gets.chomp
@@ -55,16 +54,14 @@ end
 #     alias_hash.merge!(name=>alias_name)
 #   end
 # end
-
 # alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
 
-##################################################################
+
+#################################################################################
 #2nd approach
 # Compare each letter of a word to a letters hash 
 # See if it belongs to the vowels array or the consonants array
 # Whichever one it belongs to find the index where it lives in the array
-
-
 def spy_alias2 full_name
   alphabet = {
     vowels: ['a','e','i','o','u'],
@@ -93,11 +90,9 @@ def spy_alias2 full_name
   alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
 
-
 # puts "\n"+"Welcome Agent".rjust(50)+"\n "
 # name=nil
 # alias_hash={}
-
 # until name=="" || name== "quit"
 #   puts "Enter first and last name with a space in between to be aliased (EX: 'James Bond'). Press enter or type 'quit' when finished."
 #   name=gets.chomp
@@ -106,11 +101,10 @@ end
 #     alias_hash.merge!(name=>alias_name)
 #   end
 # end
-
 # alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
 
 
-#############################################
+#################################################################################
 #3rd approach
 #Define a method for advancing letter
 # =>IF letter is a vowel, advance to next vowel
@@ -119,6 +113,7 @@ end
 # =>Transform a string input into a reversed array
 # =>Loop through the array and apply the appropriate method to advance.
 # =>Transform name back to string input and return
+
 
 def advance_letter letter
   vowel='aeiou'
@@ -129,13 +124,14 @@ def advance_letter letter
     else
       letter=vowel[vowel.index(letter)+1]
     end
-  else
+  elsif consonant.include?(letter)
     if letter==consonant[-1]
       letter=consonant[0]
     else
       letter=consonant[consonant.index(letter)+1]
     end
   end
+  letter
 end
 
 def spy_alias3 full_name
@@ -144,10 +140,10 @@ def spy_alias3 full_name
   alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
 
+
 puts "\n"+"Welcome Agent".rjust(50)+"\n "
 name=nil
 alias_hash={}
-
 until name=="" || name== "quit"
   puts "Enter first and last name with a space in between to be aliased (EX: 'James Bond'). Press enter or type 'quit' when finished."
   name=gets.chomp
@@ -156,3 +152,4 @@ until name=="" || name== "quit"
     alias_hash.merge!(name=>alias_name)
   end
 end
+alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
