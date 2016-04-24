@@ -1,12 +1,19 @@
 #Take a spy's real name and create fake name by :
 #1. Swapping first and last name
 #2 Changing all the vowels to the next vowel and all the consonants to the next consonant in the alphabet. 
-#TO DO make edge cases index values (-1 -> 0) instead of hard cases
+
+#Define a method that takes a full name with input of format "'First name' 'Last name'"
+# =>Transform the string name into reverse, then into an array where each letter is at each index.
+# =>Create a vowels array
+# =>Do a MAP! loop on the name array
+# =>  Then loop through the vowels array and replace with the appropriate next vowel. Also take care of edge case.
+# =>Create a consonatns array
+# =>Do a MAP! loop on the name array
+# =>  Then loop through the consonants array and replace with the appropriate next consonant. Also take care of edge case.
+# =>Name array should now be aliased, transfrom back into a string input to be returned.
+
 def spy_alias full_name
-  #Step #1, swap first and last name assuming input is "First_name Last_name"
   alias_name = full_name.downcase.split(' ').reverse!.join(' ').split(//)
-  #Turn alias_name into an array for each letter to one index
-  #Step #2, I'm plan to make two arrays, one for vowels and one for consonants. Run an iteration on vowels in string and advance on vowel array, then run iteration for consonatns
   vowels=['a','e','i','o','u']
   alias_name.map! do |letter|
     next_vowel=letter
@@ -36,7 +43,6 @@ def spy_alias full_name
   alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
 
-# #User Interface
 # puts "\n"+"Welcome Agent".rjust(50)+"\n "
 # name=nil
 # alias_hash={}
@@ -52,32 +58,30 @@ end
 
 # alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
 
-# John
+##################################################################
+#2nd approach
+# Compare each letter of a word to a letters hash 
+# See if it belongs to the vowels array or the consonants array
+# Whichever one it belongs to find the index where it lives in the array
 
 
-def spy_alias1 full_name
+def spy_alias2 full_name
   alphabet = {
     vowels: ['a','e','i','o','u'],
     consonants: ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z']
   }
-  #Step #1, swap first and last name assuming input is "First_name Last_name"
   alias_name = full_name.downcase.split(' ').reverse!.join(' ').split(//)
   alias_name.map! do |letter|
     next_letter=letter
     if alphabet[:vowels].include?(letter)
-      #run code to advance vowel
       index=alphabet[:vowels].index(letter)
-      # p index
-      #take care of edge case
       if letter==alphabet[:vowels][-1]
         next_letter=alphabet[:vowels][0]
       else
         next_letter=alphabet[:vowels][index+1]
       end
     elsif alphabet[:consonants].include?(letter)
-      #run code to advance consonant
       index = alphabet[:consonants].index(letter)
-      #take care of edge case
       if letter==alphabet[:consonants][-1]
         next_letter=alphabet[:consonants][0]
       else
@@ -88,11 +92,58 @@ def spy_alias1 full_name
   end
   alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
 end
-# Compare each letter of a word to a letters hash 
-# See if it belongs to the vowels array or the consonants array
-# Whichever one it belongs to find the index where it lives in the array
 
-# User Interface
+
+# puts "\n"+"Welcome Agent".rjust(50)+"\n "
+# name=nil
+# alias_hash={}
+
+# until name=="" || name== "quit"
+#   puts "Enter first and last name with a space in between to be aliased (EX: 'James Bond'). Press enter or type 'quit' when finished."
+#   name=gets.chomp
+#   unless name=='quit'|| name==''
+#     alias_name=spy_alias2 name
+#     alias_hash.merge!(name=>alias_name)
+#   end
+# end
+
+# alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
+
+
+#############################################
+#3rd approach
+#Define a method for advancing letter
+# =>IF letter is a vowel, advance to next vowel
+# =>ELSE letter is a consonant and advance to next consonant
+#Define an alias method.
+# =>Transform a string input into a reversed array
+# =>Loop through the array and apply the appropriate method to advance.
+# =>Transform name back to string input and return
+
+def advance_letter letter
+  vowel='aeiou'
+  consonant='bcdfghjklmnpqrsvwxyz'
+  if vowel.include?(letter)
+    if letter==vowel[-1]
+      letter=vowel[0]
+    else
+      letter=vowel[vowel.index(letter)+1]
+    end
+  else
+    if letter==consonant[-1]
+      letter=consonant[0]
+    else
+      letter=consonant[consonant.index(letter)+1]
+    end
+  end
+end
+
+def spy_alias3 full_name
+  alias_name = full_name.downcase.split(' ').reverse!.join(' ').split(//)
+  alias_name.map! {|letter| advance_letter letter}
+  alias_name=alias_name.join('').split(' ').map! {|name| name.capitalize}.join(' ')
+end
+
 puts "\n"+"Welcome Agent".rjust(50)+"\n "
 name=nil
 alias_hash={}
@@ -101,9 +152,7 @@ until name=="" || name== "quit"
   puts "Enter first and last name with a space in between to be aliased (EX: 'James Bond'). Press enter or type 'quit' when finished."
   name=gets.chomp
   unless name=='quit'|| name==''
-    alias_name=spy_alias1 name
+    alias_name=spy_alias3 name
     alias_hash.merge!(name=>alias_name)
   end
 end
-
-alias_hash.each {|name, alias_name| puts "#{name}'s aliased name is #{alias_name}"}
