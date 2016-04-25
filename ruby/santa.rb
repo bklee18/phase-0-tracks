@@ -39,24 +39,6 @@ end
 # santas << Santa.new("N/A", "N/A")
 # p santas
 
-# puts "Enter gender of your Santa"
-# gender=gets.chomp
-# puts "\n Enter ethnicity of your Santa"
-# ethnicity=gets.chomp
-# santa=Santa.new(gender,ethnicity)
-# p santa
-# puts "\n Which reindeer pissed you off?"
-# reindeer_mad=gets.chomp
-# santa.get_mad_at reindeer_mad
-# p santa
-# puts "\n Change gender"
-# new_gender=gets.chomp
-# santa.gender= new_gender
-# p santa
-# puts
-# p santa.age
-# p santa.ethnicity
-
 santas = []
 example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
 example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
