@@ -35,3 +35,7 @@ teenage_novel_characters = {
         }
     }        
 }
+
+puts teenage_novel_characters[:protagonist][1]
+puts teenage_novel_characters[:supporting_character][:special_quirks][1]
+puts teenage_novel_characters[:antagonist][:love_interests][:everyone][3]
