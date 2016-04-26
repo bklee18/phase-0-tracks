@@ -77,14 +77,21 @@ def interface
       hand.hit
     elsif choice=='stay'
       hand.stay
-      puts "\n Press enter for next game"
-      gets.chomp
-      interface
       break
     elsif choice=="quit"
       break
     end
   end
+  puts "Play another round? (y/n)"
+  answer=gets.chomp
+  if answer=='y'
+    interface
+  end
 end
 
-interface
+# interface
+
+hand=Blackjack.new
+p hand.methods
+#i can refactor the facial_expression and drink methods into nothing since they are already provided for in attr_accessor
+#to implement a new method with an argument, I could use trash_talk method where it .upcase user inputted string.
