@@ -5,7 +5,7 @@
 #Create Blackjack class (Aces will be worth 1)
 # =>Each initialization will start with attribute card1 and card 2 and read only attribuete of current_total
 # =>Read/write attr will include facial_expression, drink
-# =>Methods will include hit, stay, facial_expression, drink
+# =>Methods will include hit, stay, change_facial_expression, drink
 
 class Blackjack
   attr_reader :card1, :card2, :current_total
@@ -64,7 +64,7 @@ end
 def interface
   puts "\n Brian's BLACKJACK Simulator 1.0 \n"
   hand=Blackjack.new
-  catch :done do
+  loop do
     puts "\n Options: face, drink, hit, stay, quit"
     choice=gets.chomp
     if choice=='face'
@@ -80,15 +80,11 @@ def interface
       hand.hit
     elsif choice=='stay'
       hand.stay
-      puts "\n Another game? (y/n)"
-      answer=gets.chomp
-      if answer=='y'
-        interface
-      elsif answer=='n'
-        throw :done
-      end
+      puts "\n Press enter for next game"
+      gets.chomp
+      interface
     elsif choice=='quit'
-      throw :done
+      break
     end
   end
 end
