@@ -81,7 +81,6 @@ def interface
       gets.chomp
       interface
       break
-      #recursion not a good choice because it nests methods. To exit takes same number of quits as nests.
     elsif choice=="quit"
       break
     end
