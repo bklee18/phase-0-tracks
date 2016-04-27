@@ -121,3 +121,16 @@ until choice=='n'
 end
 puts
 print_list(grocery_list)
+
+#Release 4: we could call on the add_item inside the create_list so that the user wouldn't have to update quantity on all the items.
+
+#Release 5: Reflect
+# 1. I learned that spending some more time on pseudocode can go a long way in keeping a coding session, whether it's pairing or alone, on track.
+# Good, specific pseudocode is like a good framework or foundation to build a house.
+# 2. We used a hash, and passed that hash into each of the methods. I think that way really cut down on code compared to if we did 2 arrays. 
+# 3. A method returns the its last expression, or an explicit return command.
+# 4. A method can be designed to take in any kind of data structure, singular (string, int, etc) or list (hash, array).
+# 5. We were able to pass a hash between methods by assigning the creation of that hash to an a variable external to the methods, then passing that
+# hash into each method and that method would return the updated hash.
+# 6. Using hashes, being able to add string values as keys to a hash were definitely reinforced for me. Previously, I had only passed key values into 
+# a hash using symbols, so learning how to better take advantage of the flexibility of hashes and their keys is a great tool for me going forward.
