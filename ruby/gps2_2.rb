@@ -48,14 +48,13 @@
 def create_list(items)
   shopping_list = {}
   each_item = items.split(' ')
-    
   each_item.each do |thing|
     shopping_list[thing] = 0
   end
-   shopping_list   
+  shopping_list   
 end
 
-grocery_list=create_list("butter soap")
+# grocery_list=create_list("butter soap")
 
 def add_item(grocery_hash)
   puts "What would you like to add and how many?"
@@ -97,3 +96,28 @@ def print_list(hash)
   end
 end
   
+puts "Grocery List Program"
+puts "Enter list of items, separated by space:"
+items=gets.chomp
+grocery_list = create_list(items)
+print_list(grocery_list)
+puts "Would you like to add an item? (y/n)"
+answer = gets.chomp
+if answer == 'y'
+  add_item(grocery_list)
+end
+puts "\n Would you like to remove an item? (y/n)"
+answer = gets.chomp
+if answer == 'y'
+  remove_item(grocery_list)
+end
+choice = String.new
+until choice=='n'
+  puts "Would you like to update the quantity of an item? (y/n)"
+  choice = gets.chomp
+  if choice == 'y'
+    update_qty(grocery_list)
+  end
+end
+puts
+print_list(grocery_list)
