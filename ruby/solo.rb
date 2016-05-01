@@ -1,5 +1,5 @@
 #Create Blackjack class (Aces will be worth 1)
-# =>Each initialization will start with attribute card1 and card 2 and read only attribuete of current_total
+# =>Each initialization will start with read-only attribute of current_total and will set attributes facial expression and drink which will have read/write access.
 # =>Read/write attr will include facial_expression, drink
 # =>Methods will include hit, stay, change_facial_expression, drink
 
@@ -44,7 +44,7 @@ class Blackjack
       puts "YOU GOT BLACKJACK!!!"
       @facial_expression="^_^"
     end
-    puts "#{@facial_expression}"
+    puts "Facial expression: #{@facial_expression}"
   end
     
   def change_facial_expression(face)
@@ -57,6 +57,7 @@ class Blackjack
     puts "Current drink: #{@drink}"
   end
 end
+
 
 def interface
   puts "\n Brian's BLACKJACK Simulator 1.0 \n"
