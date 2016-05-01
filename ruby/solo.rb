@@ -21,6 +21,7 @@ class Blackjack
     next_card = rand(9)+1
     puts "Next card: #{next_card}"
     @current_total += next_card
+    puts "Your card total: #{current_total}"
   end
   
   def stay
@@ -89,9 +90,4 @@ def interface
   end
 end
 
-# interface
-
-hand=Blackjack.new
-p hand.methods
-#i can refactor the facial_expression and drink methods into nothing since they are already provided for in attr_accessor
-#to implement a new method with an argument, I could use trash_talk method where it .upcase user inputted string.
+interface
