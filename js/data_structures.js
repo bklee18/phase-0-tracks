@@ -16,6 +16,20 @@ if (colors.length == names.length) {
     horses[names[i]] = colors[i];
   }
 }
+//var horses = {};
 // horses.sadasd(colors[i],names[i]) bad pseudocode
 console.log(horses);
-//var horses = {};
+
+// Release 2
+function Car (make, year, color) {
+  this.make = make;
+  this.year = year;
+  this.color = color;
+  this.goodReview = true
+  // skipping a line for clarity
+  this.drive = function() {console.log("Driving!");};
+}
+
+var toyota = new Car("Toyota", 1998, "Midnight Blue");
+console.log(toyota);
+toyota.drive();
