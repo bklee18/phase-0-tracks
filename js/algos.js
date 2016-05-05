@@ -22,14 +22,38 @@ function longest_phrase(array)  {
 
 // Release 1
 // Goal: A function that takes two objects and checks to see if they share at least one key-value pair
-// Start with 2 hashes.
+// Take the first hash and iterate through each of the keys. In a second iteration, test to see if the first hash key == the second hash keys. If there is no match, then no matching key-value pairs.
+// If there is a match, then test to see if the values are also equal. If true, then return true.
+
+function matching_key_value_pair(hash1, hash2) {
+  for ( var a in hash1 ) {
+    for ( var b in hash2) {
+      if (a == b) {
+        if (hash1[a] == hash2[b]) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
 
 
 
 // DRIVER CODE
+// Release 0
 // var array = ["long phrase", "longest phrase", "longer phrase"];
 // console.log(longest_phrase(array));
-
 // var array = ["", "  ", "123", "abcdef"];
 // console.log(longest_phrase(array));
 
+// Release 1
+// var hash = { name: 'Brian', age: 27, job: 'student' };
+// var hash1 = {name: 'Al', age: 27 };
+// var hash3 = { name: 'Ed', age: 500, city: 'NYC', human: true };
+// console.log(matching_key_value_pair(hash,hash1));
+// console.log(matching_key_value_pair(hash, hash3));
+
+// Release 2
+var int = nextInt();
+console.log(int);
