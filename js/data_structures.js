@@ -1,22 +1,21 @@
 // Release 0
-var colors = ["Blue", "Green", "Pink", "Red"];
-var names = ["Ed", "Benny", "Skrillex", "Touche"];
 
-colors.push("White");
-names.push("Mr Black");
+var colors = ["blue", "green", "red", "yellow"];
+var names = ["Ed", "Bob", "Jim", "Lucy"];
+
+colors.push("magenta");
+names.push("Jim");
+
+console.log(colors);
+console.log(names);
 
 // Release 1
-// Lets make a single entry object hash first
-// var name = names[0];
-// var color = colors[0];
-// var hash = {};
-// hash[name] = color;
-// console.log(hash);
-
-// Now let's loop
-var hash = {};
-for ( var i = 0; i < names.length; i++ ) {
-  hash[names[i]] = colors[i];
+var horses = {}
+if (colors.length == names.length) {
+  for (var i = 0; i < colors.length; i++ ) {
+    horses[names[i]] = colors[i];
+  }
 }
-
-console.log(hash);
+// horses.sadasd(colors[i],names[i]) bad pseudocode
+console.log(horses);
+//var horses = {};
