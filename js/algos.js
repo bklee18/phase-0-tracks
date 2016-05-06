@@ -41,36 +41,37 @@ function matching_key_value_pair(hash1, hash2) {
 
 // Release 2
 // Goal: Write a function that takes an int and returns an array of strings of the given length int. The strings should be of varying length from 1 letter to 10 letters.
+// My first step is to define a function called random_int that will produce a random integer between its min and max parameters. (I had originally made this function a subfunction of my random_string_array, but I needed access to it for lines 113-118, so I made it a seperate, stand-alone function.)
 // I'll write a function that will take an int. Then I'll initialize a new array, and iterate that array int number of times by calling on a subfunction that will return a random string.
-// 
-// length = 10;
-// var array = [];
-// for ( i = 0; i < length; i++) {
-//   array[i] = i;
-// }
-// console.log(array);
+// The random string function will have a random length provided by my random_int function, this function will also provide a random number that will correspond with an alphabet string to get a random letter.
+
+
+function random_int(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
 function random_string_array(length) {
-  var str_array = [];
-  var alphabet = "abcdefghijklmnopqrstuvwxyz";
   
-  for ( i = 0; i < length; i++ ) {
-    str_array[i] = random_word();
-  }
-  
-  var random_word = function rand_word() {
-    var str_length = getRandomInt(1,10);
+  this.random_word = function() {
+    var alphabet = "abcdefghijklmnopqrstuvwxyz";
+    var str_length = random_int(1,10);
     var string = "";
     for ( i = 0; i < str_length; i++) {
-      string[i] = alpahbet[getRandomInt(0,25)];
+      string = string + alphabet[random_int(0,25)];
     }
     return string;
   }
   
-  var random_int = function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
+  var str_array = [];
+
+  for (var count = 0; count < length; count++ ) {
+    var word = this.random_word();
+    str_array.push(word);
   }
+
+  return str_array;
 }
+
 
 
 // DRIVER CODE
@@ -88,5 +89,24 @@ function random_string_array(length) {
 // console.log(matching_key_value_pair(hash, hash3));
 
 // Release 2
-var array = random_string_array(2);
-console.log(array);
+// var array = random_string_array(3);
+// console.log(array);
+
+// Goal: Generate an array, prints the array, then calls the longest_phrase function on that array. Do x10
+// Seems since I need to do it 10 times, a for loop would be useful. I'll loop this 10 times, and do each of the directions (generate an array, print it, call the longest_phrase on it, repeat)
+// For the array length, I'll do a fixed number the first time, then below it, I'll use a random number between 2 and 10.
+
+for ( var instances = 0; instances < 10; instances++ ) {
+  var array = random_string_array(5);
+  console.log((instances + 1) + ". Random generated word array: " + array);
+  console.log("The longest phrase from the above array is: " + longest_phrase(array) + '\n');
+}
+
+// For a varied array length:
+
+for ( var instances = 0; instances < 10; instances++ ) {
+  var random_length = random_int(2,8);
+  var array = random_string_array(random_length);
+  console.log((instances + 1) + ". Random generated word array: " + array);
+  console.log("The longest phrase from the above array is: " + longest_phrase(array) + '\n');
+}
