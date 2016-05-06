@@ -39,6 +39,39 @@ function matching_key_value_pair(hash1, hash2) {
 }
 
 
+// Release 2
+// Goal: Write a function that takes an int and returns an array of strings of the given length int. The strings should be of varying length from 1 letter to 10 letters.
+// I'll write a function that will take an int. Then I'll initialize a new array, and iterate that array int number of times by calling on a subfunction that will return a random string.
+// 
+// length = 10;
+// var array = [];
+// for ( i = 0; i < length; i++) {
+//   array[i] = i;
+// }
+// console.log(array);
+
+function random_string_array(length) {
+  var str_array = [];
+  var alphabet = "abcdefghijklmnopqrstuvwxyz";
+  
+  for ( i = 0; i < length; i++ ) {
+    str_array[i] = random_word();
+  }
+  
+  var random_word = function rand_word() {
+    var str_length = getRandomInt(1,10);
+    var string = "";
+    for ( i = 0; i < str_length; i++) {
+      string[i] = alpahbet[getRandomInt(0,25)];
+    }
+    return string;
+  }
+  
+  var random_int = function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+}
+
 
 // DRIVER CODE
 // Release 0
@@ -55,5 +88,5 @@ function matching_key_value_pair(hash1, hash2) {
 // console.log(matching_key_value_pair(hash, hash3));
 
 // Release 2
-var int = nextInt();
-console.log(int);
+var array = random_string_array(2);
+console.log(array);
