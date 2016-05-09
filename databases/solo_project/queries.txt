@@ -1,0 +1,13 @@
+Release 2
+1)
+sqlite> SELECT * FROM cars;
+id          make        year        brand_id    used      
+----------  ----------  ----------  ----------  ----------
+1           Sonata      2011        1           true      
+2           Sante Fe    2016        1           false     
+3           F-150       2016        2           false     
+4           330x        2014        3           true      
+5           Focus       2010        2           true      
+6           M3          2017        3           false 
+
+2) 
