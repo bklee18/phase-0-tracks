@@ -57,3 +57,24 @@ id          make        year        used        brand_id
 3           F-150       2016        true        2         
 4           330x        2014        true        3         
 5           Focus       2010        true        2 
+
+Release 3
+2) Using INNER JOIN
+sqlite> INSERT INTO cars (make, year, used, brand_id) VALUES ("Golf", 2013, 'true', 4);
+sqlite> SELECT * FROM cars;
+id          make        year        used        brand_id  
+----------  ----------  ----------  ----------  ----------
+1           Sonata      2011        true        1         
+2           Sante Fe    2016        true        1         
+3           F-150       2016        true        2         
+4           330x        2014        true        3         
+5           Focus       2010        true        2         
+6           Golf        2013        true        4         
+sqlite> SELECT cars.make, cars.year, cars.used, brands.name FROM cars INNER JOIN brands ON cars.brand_id = brands.id;
+make        year        used        name      
+----------  ----------  ----------  ----------
+Sonata      2011        true        Hyundai   
+Sante Fe    2016        true        Hyundai   
+F-150       2016        true        Ford      
+330x        2014        true        BMW       
+Focus       2010        true        Ford   
