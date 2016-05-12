@@ -108,7 +108,6 @@ end
 
 # Now to print all incomes for a month
 def print_month_income(month_id, db)
-  # month_id = 1
   month_income = db.execute("SELECT income_name, income_amount FROM income WHERE month_id = #{month_id}")
   puts "All Income Entered for " + get_month_year(month_id, db)
   total = 0
@@ -117,6 +116,7 @@ def print_month_income(month_id, db)
     total += month[1]
   end
   puts "Total Income: #{total}"
+  return total
 end
 # print_month_income(1,db)
 
@@ -128,8 +128,9 @@ def print_month_cost(month_id, db)
     total += month[1]
   end
   puts "Total Costs: #{total}"
+  return total
 end
-print_month_cost(1,db)
+# print_month_cost(1,db)
 
 ######### DRIVER CODE ##########
 # month_id = 1
