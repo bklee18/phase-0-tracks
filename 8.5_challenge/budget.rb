@@ -48,13 +48,14 @@ db.execute(create_costs_table_cmd)
 # YAY tables are created
 
 # Now to work on getting user input and adding input into appropriate tables
-puts "Type the month to input income and expenses"
-month = gets.chomp
-puts "Type the year of this month"
-year = gets.chomp.to_i
-
-db.execute("INSERT INTO months (month, year) VALUES ('#{month}', #{year})")
-
+def add_new_month
+  puts "Type the month to input income and expenses"
+  month = gets.chomp
+  puts "Type the year of this month"
+  year = gets.chomp.to_i
+  
+  db.execute("INSERT INTO months (month, year) VALUES ('#{month}', #{year})")
+end
 
 
 
