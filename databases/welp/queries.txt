@@ -1,0 +1,33 @@
+Release 2
+2)
+sqlite> SELECT * FROM users, reviews, businesses WHERE reviews.business_id = businesses.id;
+1|Brian|Lee|1|4|Great tacos!!!|1|1|1|A's Tacos
+2|Alice|Wonderland|1|4|Great tacos!!!|1|1|1|A's Tacos
+3|Kittens|Everywhere|1|4|Great tacos!!!|1|1|1|A's Tacos
+1|Brian|Lee|2|1|No catnip >:(|2|3|2|Dee's BBQ
+2|Alice|Wonderland|2|1|No catnip >:(|2|3|2|Dee's BBQ
+3|Kittens|Everywhere|2|1|No catnip >:(|2|3|2|Dee's BBQ
+1|Brian|Lee|3|3|Decent sandwich|3|2|3|Zee's Sandwiches
+2|Alice|Wonderland|3|3|Decent sandwich|3|2|3|Zee's Sandwiches
+3|Kittens|Everywhere|3|3|Decent sandwich|3|2|3|Zee's Sandwiches
+1|Brian|Lee|4|5|Great BBQ|2|2|2|Dee's BBQ
+2|Alice|Wonderland|4|5|Great BBQ|2|2|2|Dee's BBQ
+3|Kittens|Everywhere|4|5|Great BBQ|2|2|2|Dee's BBQ
+
+
+3)
+sqlite> SELECT users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment FROM reviews INNER JOIN businesses ON reviews.business_id = businesses.id INNER JOIN users ON reviews.user_id = users.id;
+first_Name  last_Name   name        stars       comment       
+----------  ----------  ----------  ----------  --------------
+Brian       Lee         A's Tacos   4           Great tacos!!!
+Kittens     Everywhere  Dee's BBQ   1           No catnip >:( 
+Alice       Wonderland  Zee's Sand  3           Decent sandwic
+Alice       Wonderland  Dee's BBQ   5           Great BBQ  
+
+
+4)
+sqlite> SELECT users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment FROM businesses INNER JOIN reviews ON businesses.id = reviews.business_id INNER JOIN users ON reviews.user_id = users.id WHERE businesses.id = 2;
+first_Name  last_Name   name        stars       comment      
+----------  ----------  ----------  ----------  -------------
+Kittens     Everywhere  Dee's BBQ   1           No catnip >:(
+Alice       Wonderland  Dee's BBQ   5           Great BBQ 
