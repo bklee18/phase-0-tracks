@@ -11,3 +11,36 @@ Monthly Financial Budget Program:
 
 =end
 
+require 'sqlite3'
+require 'faker'
+
+# create SQLite3 db
+db = SQLite3::Database.new("budget.db")
+
+create_month_table_cmd = <<-SQL
+  CREATE TABLE IF NOT EXISTS months(
+    id INTEGER PRIMARY KEY,
+    month VARCHAR(255),
+    year INT
+  )
+SQL
+
+create_incoming_table_cmd = <<-SQL
+  CREATE TABLE IF NOT EXISTS incoming(
+    id INTEGER PRIMARY KEY,
+    month_id INT,
+    income INT
+  )
+SQL
+
+create_costs_table_cmd = <<-SQL
+  CREATE TABLE IF NOT EXISTS costs(
+    id INTEGER PRIMARY KEY,
+    month_id INT,
+    cost INT,
+  )
+SQL
+
+db.execute(create_month_table_cmd)
+db.execute(create_incoming_table_cmd)
+db.execute(create_costs_table_cmd)
