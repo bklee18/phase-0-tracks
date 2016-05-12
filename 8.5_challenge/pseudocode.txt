@@ -1,0 +1,7 @@
+Goal: Write a program for your (or someone else's) benefit that uses persistent data!
+
+Idea 1: Casino Game - Use my blackjack program and also write another game program (maybe dice) and allow the user to make an id/pw. SQL DB will keep track of users and their chipcount.
+
+Idea 2: Travel Planner - Allow a user to make a trip with number of nights, budget, travel and lodging cost, and a daily itinerary. 
+
+Idea 3 - Financial budget monthly
