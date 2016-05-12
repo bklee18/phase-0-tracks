@@ -77,12 +77,12 @@ def pick_month_id(db)
   return month_id
 end
 
-# Lets add some costs to the correct month_id now 
+# Lets add some income to the correct month_id now 
 # hard-code month_id to 1 for testing purposes
 def add_income(month_id, db)
-  month_id = 1
+  # month_id = 1
   while true
-    puts "Type name of income for this month, or 'done' if finished:"
+    puts "Type name of income for this month, or 'done' when finished:"
     income_name = gets.chomp
     break if income_name == 'done'
     puts "Enter how much income per month this provides (will be rounded to lowest integer): "
@@ -90,4 +90,18 @@ def add_income(month_id, db)
     db.execute("INSERT INTO income (month_id, income_name, income_amount) VALUES (#{month_id}, '#{income_name}', #{income_amount})")
   end
 end
-#coding 100 for month_id=1 was entered
+#coding 100 for month_id=1 was entered as income
+
+# Add costs to the correct month_id
+def add_cost(month_id, db)
+  # month_id = 1
+  while true
+    puts "Type name of cost for this month, or 'done' when finished:"
+    cost_name = gets.chomp
+    break if cost_name == 'done'
+    puts "Enter how much this costs per month (will be rounded to lowest integer):"
+    cost_amount = gets.chomp.to_i
+    db.execute("INSERT INTO costs (month_id, cost_name, cost_amount) VALUES (#{month_id}, '#{cost_name}', #{cost_amount})")
+  end
+end
+#food 1000 for month_id=1 was entered as cost
