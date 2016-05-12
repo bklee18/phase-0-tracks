@@ -37,7 +37,7 @@ create_costs_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS costs(
     id INTEGER PRIMARY KEY,
     month_id INT,
-    cost INT,
+    cost INT
   )
 SQL
 
