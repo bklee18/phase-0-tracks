@@ -29,7 +29,9 @@ create_income_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS income(
     id INTEGER PRIMARY KEY,
     month_id INT,
-    income INT
+    income_name VARCHAR(255), 
+    income_amount INT,
+    FOREIGN KEY (month_id) REFERENCES months(id)
   )
 SQL
 
@@ -37,7 +39,9 @@ create_costs_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS costs(
     id INTEGER PRIMARY KEY,
     month_id INT,
-    cost INT
+    cost_name VARCHAR(255),
+    cost_amount INT,
+    FOREIGN KEY (month_id) REFERENCES months(id)
   )
 SQL
 
@@ -72,3 +76,18 @@ def pick_month_id(db)
   month_id = month_id[0][0]
   return month_id
 end
+
+# Lets add some costs to the correct month_id now 
+# hard-code month_id to 1 for testing purposes
+def add_income(month_id, db)
+  month_id = 1
+  while true
+    puts "Type name of income for this month, or 'done' if finished:"
+    income_name = gets.chomp
+    break if income_name == 'done'
+    puts "Enter how much income per month this provides (will be rounded to lowest integer): "
+    income_amount = gets.chomp.to_i
+    db.execute("INSERT INTO income (month_id, income_name, income_amount) VALUES (#{month_id}, '#{income_name}', #{income_amount})")
+  end
+end
+#coding 100 for month_id=1 was entered
