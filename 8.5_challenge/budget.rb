@@ -99,7 +99,6 @@ end
 
 
 # Lets add some income to the correct month_id now 
-# hard-code month_id to 1 for testing purposes
 def add_income(month_id, db, income_name, income_amount)
   db.execute("INSERT INTO income (month_id, income_name, income_amount) VALUES (#{month_id}, ?, ?)", [income_name, income_amount])
 end
@@ -122,16 +121,26 @@ def remove_month_cost(month_id, db, cost_name_argument)
 end
 
 
+# print list of months
+def print_month_list(db)
+  month_list = db.execute("SELECT month, year FROM months")
+  month_list.each do |month|
+    puts "#{month[0]} #{month[1]}"
+  end
+end
+
 # Now to print all incomes for a month
 def print_month_income(month_id, db)
   month_income = db.execute("SELECT income_name, income_amount FROM income WHERE month_id = #{month_id}")
   puts "All Income Entered for " + get_month_year(month_id, db)
   total = 0
+  counter = 1
   month_income.each do |month|
-    puts "#{month[0]} provided income of #{month[1]}"
+    puts "#{counter}. #{month[0]} || $#{month[1]}"
     total += month[1]
+    counter += 1
   end
-  puts "Total Income: #{total}"
+  puts "Total Income: $#{total}"
   return total
 end
 
@@ -139,11 +148,13 @@ end
 def print_month_cost(month_id, db)
   month_cost = db.execute("SELECT cost_name, cost_amount FROM costs WHERE month_id = #{month_id}")
   total = 0
+  counter = 1
   month_cost.each do |month|
-    puts "#{month[0]} cost #{month[1]}"
+    puts "#{counter}. #{month[0]} || $#{month[1]}"
     total += month[1]
+    counter += 1
   end
-  puts "Total Costs: #{total}"
+  puts "Total Costs: $#{total}"
   return total
 end
 
@@ -172,29 +183,36 @@ end
 # User Interface
 
 puts "\n Welcome to Brian's Monthly Budget Program \n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-puts "$$$ Menu $$$ \n(Enter number of choice)\n1. Add Month \n2. Access Existing Month"
+puts "$$$ Menu $$$ \n(Enter number of choice)\n1. Add Month \n2. Access Existing Month\n3. See List of Existing Months"
 user_input = gets.chomp.to_i
-if user_input == 1
-  month_id = add_new_month(db) 
-elsif user_input == 2
-  month_id = pick_month_id(db)
-end
+  if user_input == 1
+    month_id = add_new_month(db)
+  elsif user_input == 2
+    month_id = pick_month_id(db)
+    break
+  elsif user_input == 3
+    print_month_list(db)
+  elsif user_input == 4
+    break
+  end
+#need to print month list and then ask which month to access###########
 
 puts "\nAccessing ..." + get_month_year(month_id, db)
 while true
   puts "\n*** Menu for " + get_month_year(month_id,db) + " ***\n(Enter number of choice)\n1. Add Income\n2. Add Cost\n3. Remove Income\n4. Remove Cost\n5. Print All Month Income\n6. Print All Month Cost\n7. Quit\n\n"
   user_input = gets.chomp.to_i
+  puts
   if user_input == 1
-    p "Enter name of income source: "
+    puts "Enter name of income source: "
     income_name = gets.chomp.to_s
-    p "Enter amount of income for month: "
+    puts "Enter amount of income for month: "
     income_amount = gets.chomp.to_i
     add_income(month_id, db, income_name, income_amount)
     puts "Data entered!\n"
   elsif user_input == 2
-    p "Enter name of cost: "
+    puts "Enter name of cost: "
     cost_name = gets.chomp.to_s
-    p "Enter amount of cost for month: "
+    puts "Enter amount of cost for month: "
     cost_amount = gets.chomp.to_i
     add_cost(month_id, db, cost_name, cost_amount)
     puts "Data entered!\n"
@@ -217,4 +235,6 @@ while true
   elsif user_input == 7
     break
   end
+  puts "\nPress Enter to continue..."
+  gets
 end
