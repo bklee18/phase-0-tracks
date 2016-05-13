@@ -67,6 +67,7 @@ end
 # add_new_month(db)
 # May 2016 is in db
 
+
 # Now, need to ask user to pick which month/year to add data into. Their answer will specify the months_id that will be used to correctly add incoming income and costs to the appropirate tables.
 def pick_month_id(db)  
   puts "Type the month and year to add data to (ex. 'May 2016')"
@@ -86,16 +87,6 @@ def pick_month_id(db)
   return month_id
 end
 
-# Lets add some income to the correct month_id now 
-# hard-code month_id to 1 for testing purposes
-def add_income(month_id, db, income_name, income_amount)
-  db.execute("INSERT INTO income (month_id, income_name, income_amount) VALUES (#{month_id}, ?, ?)", [income_name, income_amount])
-end
-
-# Add costs to the correct month_id
-def add_cost(month_id, db, cost_name, cost_amount)
-  db.execute("INSERT INTO costs (month_id, cost_name, cost_amount) VALUES (#{month_id}, ?, ?)", [cost_name, cost_amount])
-end
 
 # Method to get month/year from month_id
 def get_month_year(month_id, db)
@@ -105,6 +96,30 @@ def get_month_year(month_id, db)
   month_year = "#{month_year_from_db[0][0]} #{month_year_from_db[0][1]}"
 end
 # p get_month_year(1,db)
+
+
+# Lets add some income to the correct month_id now 
+# hard-code month_id to 1 for testing purposes
+def add_income(month_id, db, income_name, income_amount)
+  db.execute("INSERT INTO income (month_id, income_name, income_amount) VALUES (#{month_id}, ?, ?)", [income_name, income_amount])
+end
+
+
+# Add costs to the correct month_id
+def add_cost(month_id, db, cost_name, cost_amount)
+  db.execute("INSERT INTO costs (month_id, cost_name, cost_amount) VALUES (#{month_id}, ?, ?)", [cost_name, cost_amount])
+end
+
+# remove an income
+def remove_month_income(month_id, db, income_name_argument)
+  db.execute("DELETE FROM income WHERE income_name = #{income_name_argument} AND month_id = #{month_id}")
+end
+
+
+# remove a cost
+def remove_month_cost(month_id, db, cost_name_argument)
+  db.execute("DELETE FROM costs WHERE cost_name = #{cost_name_argument} AND month_id = #{month_id}")
+end
 
 # Now to print all incomes for a month
 def print_month_income(month_id, db)
@@ -120,6 +135,7 @@ def print_month_income(month_id, db)
 end
 # print_month_income(1,db)
 
+
 def print_month_cost(month_id, db)
   month_cost = db.execute("SELECT cost_name, cost_amount FROM costs WHERE month_id = #{month_id}")
   total = 0
@@ -131,6 +147,13 @@ def print_month_cost(month_id, db)
   return total
 end
 # print_month_cost(1,db)
+
+
+
+
+
+
+
 
 ######### DRIVER CODE ##########
 # month_id = 1
