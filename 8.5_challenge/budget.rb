@@ -55,17 +55,22 @@ db.execute(create_costs_table_cmd)
 
 # YAY tables are created
 
+# HOW ABOUT A MONTH CLASS
+# Enter a month and year to add data to...(check db to see if month year combo exists)...IF true, set @month_id to id ELSE tell user month year combo is empty and whether to proceed, then add
+# maybe, maybe
+
+
 # Now to work on getting user input and adding input into appropriate tables
 def add_new_month(db)
   puts "Type the month to input income and expenses"
   month = gets.chomp
   puts "Type the year of this month"
   year = gets.chomp.to_i
-  
   db.execute("INSERT INTO months (month, year) VALUES ('#{month}', #{year})")
+  month_id = db.execute("SELECT id FROM months WHERE month = '#{month}' AND year = #{year}")
+  month_id = month_id[0][0]
+  return month_id
 end
-# add_new_month(db)
-# May 2016 is in db
 
 
 # Now, need to ask user to pick which month/year to add data into. Their answer will specify the months_id that will be used to correctly add incoming income and costs to the appropirate tables.
@@ -80,8 +85,6 @@ def pick_month_id(db)
   end
   month = pick_date[0]
   year = pick_date[1].to_i
-  # p month
-  # p year
   month_id = db.execute("SELECT id FROM months WHERE month = '#{month}' AND year = #{year}")
   month_id = month_id[0][0]
   return month_id
@@ -91,11 +94,8 @@ end
 # Method to get month/year from month_id
 def get_month_year(month_id, db)
   month_year_from_db = db.execute("SELECT month, year FROM months WHERE id=#{month_id}")
-  # p month_year_from_db
-  # lets return as a string for now
   month_year = "#{month_year_from_db[0][0]} #{month_year_from_db[0][1]}"
 end
-# p get_month_year(1,db)
 
 
 # Lets add some income to the correct month_id now 
@@ -112,14 +112,15 @@ end
 
 # remove an income
 def remove_month_income(month_id, db, income_name_argument)
-  db.execute("DELETE FROM income WHERE income_name = #{income_name_argument} AND month_id = #{month_id}")
+  db.execute("DELETE FROM income WHERE income_name = '#{income_name_argument}' AND month_id = #{month_id}")
 end
 
 
 # remove a cost
 def remove_month_cost(month_id, db, cost_name_argument)
-  db.execute("DELETE FROM costs WHERE cost_name = #{cost_name_argument} AND month_id = #{month_id}")
+  db.execute("DELETE FROM costs WHERE cost_name = '#{cost_name_argument}' AND month_id = #{month_id}")
 end
+
 
 # Now to print all incomes for a month
 def print_month_income(month_id, db)
@@ -133,7 +134,6 @@ def print_month_income(month_id, db)
   puts "Total Income: #{total}"
   return total
 end
-# print_month_income(1,db)
 
 
 def print_month_cost(month_id, db)
@@ -146,13 +146,6 @@ def print_month_cost(month_id, db)
   puts "Total Costs: #{total}"
   return total
 end
-# print_month_cost(1,db)
-
-
-
-
-
-
 
 
 ######### DRIVER CODE ##########
@@ -176,4 +169,52 @@ end
 # end
 
 
+# User Interface
 
+puts "\n Welcome to Brian's Monthly Budget Program \n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+puts "$$$ Menu $$$ \n(Enter number of choice)\n1. Add Month \n2. Access Existing Month"
+user_input = gets.chomp.to_i
+if user_input == 1
+  month_id = add_new_month(db) 
+elsif user_input == 2
+  month_id = pick_month_id(db)
+end
+
+puts "\nAccessing ..." + get_month_year(month_id, db)
+while true
+  puts "\n*** Menu for " + get_month_year(month_id,db) + " ***\n(Enter number of choice)\n1. Add Income\n2. Add Cost\n3. Remove Income\n4. Remove Cost\n5. Print All Month Income\n6. Print All Month Cost\n7. Quit\n\n"
+  user_input = gets.chomp.to_i
+  if user_input == 1
+    p "Enter name of income source: "
+    income_name = gets.chomp.to_s
+    p "Enter amount of income for month: "
+    income_amount = gets.chomp.to_i
+    add_income(month_id, db, income_name, income_amount)
+    puts "Data entered!\n"
+  elsif user_input == 2
+    p "Enter name of cost: "
+    cost_name = gets.chomp.to_s
+    p "Enter amount of cost for month: "
+    cost_amount = gets.chomp.to_i
+    add_cost(month_id, db, cost_name, cost_amount)
+    puts "Data entered!\n"
+  elsif user_input == 3
+    p "Enter name of income to remove: "
+    income_name = gets.chomp.to_s
+    remove_month_income(month_id, db, income_name)
+    puts "Data removed!\n"
+  elsif user_input == 4
+    p "Enter name of cost to remove: "
+    cost_name = gets.chomp.to_s
+    remove_month_cost(month_id, db, cost_name)
+    puts "Data removed!\n"
+  elsif user_input == 5
+    puts "Printing all months income: "
+    print_month_income(month_id, db)
+  elsif user_input == 6
+    puts" Printing all months costs: "
+    print_month_cost(month_id, db)
+  elsif user_input == 7
+    break
+  end
+end
