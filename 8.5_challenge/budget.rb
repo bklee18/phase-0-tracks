@@ -1,17 +1,17 @@
 =begin
 Monthly Financial Budget Program:
 
-* Establish username in DB
+* Budget program to enter incomes and expenses for a month. User can enter multiple months.
 
-* Ask for positive income streams - Allow for multiple streams, as many as the user wants. Number will have to be changed to per month rate
+* I create 3 tables, months, income, costs. The months table has a one-to-many relationship with income and costs where the month_id is a foreign key in income and costs.
 
-* Ask for monthly costs - Allow for multiple costs, as many as the user wants. Number will have to be changed to per monthly rate
+* Then add print functionality to print total income and total cost for a month. 
 
-* Store all plusses and minuses for one month in a table that will use a foreign key to reference the month.
-
-* Let user remove a cost/income, also print that all that month's costs/incomes 
-* REPORTS:
+* REPORTS (not implemented yet):
 ** Allow user to see all income and costs for a month respectively and add them together.
+** Allow user to see cash flow over several months.
+** Allow user to enter a recurring income/cost
+** Allow multiple users by making a user table that will have a one-to-many relationship with months table.
 
 =end
 
@@ -150,11 +150,11 @@ def print_month_income(month_id, db)
   total = 0
   counter = 1
   month_income.each do |month|
-    puts "#{counter}. #{month[0]} || $#{month[1]}"
+    puts "#{counter}. #{month[0]} - $#{month[1]}"
     total += month[1]
     counter += 1
   end
-  puts "Total Income: $#{total}"
+  puts "----------------------\nTotal Income: $#{total}"
   return total
 end
 
@@ -164,11 +164,11 @@ def print_month_cost(month_id, db)
   total = 0
   counter = 1
   month_cost.each do |month|
-    puts "#{counter}. #{month[0]} || $#{month[1]}"
+    puts "#{counter}. #{month[0]} - $#{month[1]}"
     total += month[1]
     counter += 1
   end
-  puts "Total Costs: $#{total}"
+  puts "----------------------\nTotal Costs: $#{total}"
   return total
 end
 
@@ -176,7 +176,7 @@ end
 
 # User Interface
 
-puts "\n Welcome to Brian's Monthly Budget Program \n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n"
+puts "\n Welcome to Brian's Monthly Budget Program \n********************************\n"
 def ui_rootmenu(db)
   while true
     puts "$$$ Menu $$$".ljust(50) + "\n(Enter number of choice)\n1. Add Month \n2. Access Existing Month\n3. Remove Existing Month \n4. See List of Existing Months\n5. Exit"
