@@ -110,7 +110,7 @@ def add_income(month_id, db)
 end
 
 
-def add_cost(month_id, db, cost_name, cost_amount)
+def add_cost(month_id, db)
   puts "Enter name of cost: "
   cost_name = gets.chomp.to_s
   puts "Enter amount of cost for month: "
