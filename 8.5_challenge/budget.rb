@@ -77,20 +77,10 @@ def remove_month(db)
 end
 
 
-def pick_month_id(db)  
-  puts "Type the month and year to add data to (ex. 'May 2016')"
-  pick_date = gets.chomp
-  pick_date = pick_date.split(" ")
-  while pick_date.length != 2
-    puts "Please enter month and year in format 'month year' ie 'January 2020'"
-    pick_date = gets.chomp
-    pick_date = pick_date.split(" ")
-  end
-  month = pick_date[0]
-  year = pick_date[1].to_i
-  month_id = db.execute("SELECT id FROM months WHERE month = '#{month}' AND year = #{year}")
-  month_id = month_id[0][0]
-  return month_id
+def pick_month_id(db)
+  print_month_table(db)
+  puts "Type the month id to access: "
+  month_id = gets.chomp
 end
 
 
@@ -120,7 +110,8 @@ def add_cost(month_id, db)
 end
 
 
-def remove_month_income(month_id, db, income_name)
+def remove_month_income(month_id, db)
+  print_month_income(month_id, db)
   puts "Enter name of income to remove: "
   income_name = gets.chomp.to_s
   db.execute("DELETE FROM income WHERE income_name = '#{income_name}' AND month_id = #{month_id}")
@@ -129,6 +120,7 @@ end
 
 
 def remove_month_cost(month_id, db)
+  print_month_cost(month_id, db)
   puts "Enter name of cost to remove: "
   cost_name = gets.chomp.to_s
   db.execute("DELETE FROM costs WHERE cost_name = '#{cost_name}' AND month_id = #{month_id}")
@@ -176,9 +168,11 @@ end
 
 # User Interface
 
-puts "\n Welcome to Brian's Monthly Budget Program \n********************************\n"
+# puts "\n Welcome to Brian's Monthly Budget Program \n********************************\n"
 def ui_rootmenu(db)
+  
   while true
+  Gem.win_platform? ? (system "cls") : (system "clear")
     puts "$$$ Menu $$$".ljust(50) + "\n(Enter number of choice)\n1. Add Month \n2. Access Existing Month\n3. Remove Existing Month \n4. See List of Existing Months\n5. Exit"
     user_input = gets.chomp.to_i
     if user_input == 1
@@ -205,6 +199,7 @@ end
 def ui_submenu(month_id, db)
   puts "\nAccessing ..." + get_month_year(month_id, db)
   while true
+  Gem.win_platform? ? (system "cls") : (system "clear")
     puts "\n*** Menu for " + get_month_year(month_id,db) + " ***\n(Enter number of choice)\n1. Add Income\n2. Add Cost\n3. Remove Income\n4. Remove Cost\n5. Print All Month Income\n6. Print All Month Cost\n7. Return to Root Menu\n\n"
     user_input = gets.chomp.to_i
     puts
