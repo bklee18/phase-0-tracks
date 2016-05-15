@@ -16,9 +16,7 @@ Monthly Financial Budget Program:
 =end
 
 require 'sqlite3'
-require 'faker'
 
-# create SQLite3 db
 db = SQLite3::Database.new("budget.db")
 
 create_month_table_cmd = <<-SQL
@@ -53,24 +51,22 @@ db.execute(create_month_table_cmd)
 db.execute(create_income_table_cmd)
 db.execute(create_costs_table_cmd)
 
-# YAY tables are created
 
-# HOW ABOUT A MONTH CLASS
-# Enter a month and year to add data to...(check db to see if month year combo exists)...IF true, set @month_id to id ELSE tell user month year combo is empty and whether to proceed, then add
-# maybe, maybe
-
-
-# Now to work on getting user input and adding input into appropriate tables
 def add_new_month(db)
-  puts "Type the month to input income and expenses"
-  month = gets.chomp
-  puts "Type the year of this month"
-  year = gets.chomp.to_i
-  db.execute("INSERT INTO months (month, year) VALUES ('#{month}', #{year})")
-  month_id = db.execute("SELECT id FROM months WHERE month = '#{month}' AND year = #{year}")
+  puts "Type the month and year to add data to (ex. 'May 2016')"
+  new_month = gets.chomp
+  new_month = new_month.split(" ")
+  while new_month.length != 2
+    puts "Please enter month and year in format 'month year' ie 'January 2020'"
+    new_month = gets.chomp
+    new_month = new_month.split(" ")
+  end
+  db.execute("INSERT INTO months (month, year) VALUES ('#{new_month[0]}', #{new_month[1]})")
+  month_id = db.execute("SELECT id FROM months WHERE month = '#{new_month[0]}' AND year = #{new_month[1]}")
   month_id = month_id[0][0]
   return month_id
 end
+
 
 def remove_month(db)
   print_month_table(db)
@@ -79,8 +75,8 @@ def remove_month(db)
   puts "Deleting..."
   db.execute("DELETE FROM months WHERE id = #{month_id_to_remove}")
 end
-    
-# Now, need to ask user to pick which month/year to add data into. Their answer will specify the months_id that will be used to correctly add incoming income and costs to the appropirate tables.
+
+
 def pick_month_id(db)  
   puts "Type the month and year to add data to (ex. 'May 2016')"
   pick_date = gets.chomp
@@ -98,14 +94,12 @@ def pick_month_id(db)
 end
 
 
-# Method to get month/year from month_id
 def get_month_year(month_id, db)
   month_year_from_db = db.execute("SELECT month, year FROM months WHERE id=#{month_id}")
   month_year = "#{month_year_from_db[0][0]} #{month_year_from_db[0][1]}"
 end
 
 
-# Lets add some income to the correct month_id now 
 def add_income(month_id, db)
   puts "Enter name of income source: "
     income_name = gets.chomp.to_s
@@ -116,7 +110,6 @@ def add_income(month_id, db)
 end
 
 
-# Add costs to the correct month_id
 def add_cost(month_id, db, cost_name, cost_amount)
   puts "Enter name of cost: "
   cost_name = gets.chomp.to_s
@@ -126,7 +119,7 @@ def add_cost(month_id, db, cost_name, cost_amount)
   puts "Data entered!\n"
 end
 
-# remove an income
+
 def remove_month_income(month_id, db, income_name)
   puts "Enter name of income to remove: "
   income_name = gets.chomp.to_s
@@ -135,7 +128,6 @@ def remove_month_income(month_id, db, income_name)
 end
 
 
-# remove a cost
 def remove_month_cost(month_id, db)
   puts "Enter name of cost to remove: "
   cost_name = gets.chomp.to_s
@@ -144,7 +136,6 @@ def remove_month_cost(month_id, db)
 end
 
 
-# print list of months
 def print_month_table(db)
   month_table = db.execute("SELECT * FROM months")
   month_table.each do |month|
@@ -152,7 +143,7 @@ def print_month_table(db)
   end
 end
 
-# Now to print all incomes for a month
+
 def print_month_income(month_id, db)
   month_income = db.execute("SELECT income_name, income_amount FROM income WHERE month_id = #{month_id}")
   puts "All Income Entered for " + get_month_year(month_id, db)
@@ -181,26 +172,6 @@ def print_month_cost(month_id, db)
   return total
 end
 
-
-######### DRIVER CODE ##########
-# month_id = 1
-# while true
-#   puts "Type name of income for this month, or 'done' when finished:"
-#   income_name = gets.chomp
-#   break if income_name == 'done'
-#   puts "Enter how much income per month this provides (will be rounded to lowest integer): "
-#   income_amount = gets.chomp.to_i
-#   add_income(month_id, db, income_name, income_amount)
-# end
-
-# while true
-#   puts "Type name of cost for this month, or 'done' when finished:"
-#   cost_name = gets.chomp
-#   break if cost_name == 'done'
-#   puts "Enter how much this costs per month (will be rounded to lowest integer):"
-#   cost_amount = gets.chomp.to_i
-#   add_cost(month_id, db, cost_name, cost_amount)
-# end
 
 
 # User Interface
@@ -238,29 +209,13 @@ def ui_submenu(month_id, db)
     user_input = gets.chomp.to_i
     puts
     if user_input == 1
-      # puts "Enter name of income source: "
-      # income_name = gets.chomp.to_s
-      # puts "Enter amount of income for month: "
-      # income_amount = gets.chomp.to_i
       add_income(month_id, db)
-      # puts "Data entered!\n"
     elsif user_input == 2
-      # puts "Enter name of cost: "
-      # cost_name = gets.chomp.to_s
-      # puts "Enter amount of cost for month: "
-      # cost_amount = gets.chomp.to_i
       add_cost(month_id, db)
-      # puts "Data entered!\n"
     elsif user_input == 3
-      # p "Enter name of income to remove: "
-      # income_name = gets.chomp.to_s
       remove_month_income(month_id, db)
-      # puts "Data removed!\n"
     elsif user_input == 4
-      # p "Enter name of cost to remove: "
-      # cost_name = gets.chomp.to_s
       remove_month_cost(month_id, db)
-      # puts "Data removed!\n"
     elsif user_input == 5
       puts "Printing all months income: "
       print_month_income(month_id, db)
@@ -273,7 +228,6 @@ def ui_submenu(month_id, db)
     puts "\nPress Enter to continue..."
     gets
   end
-  
 end
 
 ui_rootmenu(db)
