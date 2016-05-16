@@ -91,7 +91,6 @@ def pick_month_id(db)
 end
 
 
-
 def get_month_year(month_id, db)
   month_year_from_db = db.execute("SELECT month, year FROM months WHERE id=#{month_id}")
   month_year = "#{month_year_from_db[0][0]} #{month_year_from_db[0][1]}"
