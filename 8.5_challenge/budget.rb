@@ -79,9 +79,17 @@ end
 
 def pick_month_id(db)
   print_month_table(db)
-  puts "Type the month id to access: "
-  month_id = gets.chomp
+  puts "Type the Month ID to access: "
+  month_id = gets.chomp.to_i
+  is_valid_month_id = db.execute("SELECT id FROM months WHERE id = #{month_id}")
+  while is_valid_month_id.length == 0 
+    puts "Month ID entered was not found, please enter the Month ID to access: "
+    month_id = gets.chomp
+    is_valid_month_id = db.execute("SELECT id FROM months WHERE id = #{month_id}")
+  end
+  return month_id
 end
+
 
 
 def get_month_year(month_id, db)
