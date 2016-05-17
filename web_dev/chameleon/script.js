@@ -9,19 +9,19 @@ console.log("The script is running!");
 // var photo = document.getElementById("lizard-photo");
 // photo.addEventListener("click", addPinkBorder);
 
-// var photo = document.getElementById("lizard-photo");
-// var hideButton = document.getElementById("hidebutton");
+var photo = document.getElementById("lizard-photo");
+var hideButton = document.getElementById("hidebutton");
 
-// console.log(hideButton);
+console.log(hideButton);
 
-// function hidePhoto(event) {
-//   console.log("hide happened");
-//   console.log(event);
-//   event.target.style.visibility = "hidden";
-// }
+function hidePhoto(event) {
+  console.log("hide happened");
+  console.log(event);
+  photo.style.visibility = "hidden";
+}
 
 // photo.addEventListener("click", hidePhoto);
-// hideButton.addEventListener("click", hidePhoto);
+hideButton.addEventListener("click", hidePhoto);
 
 // Add new element
 var newHeading = document.createElement('h1');
