@@ -45,6 +45,9 @@ get '/students/:id' do
   student.to_s
 end
 
+
+# RELEASE 0
+
 get '/contact' do
 	"123 Brian Street<br>Briville, USA"
 end
@@ -74,7 +77,6 @@ get '/:name' do
 		"Name not found!"
 	else
 		student = db.execute("SELECT * FROM students WHERE id = #{id}")
-		p student
 		"ID: #{student[0]['id']} <br>Name: #{student[0]['name']} <br>Campus: #{student[0]['campus']} <br>Age: #{student[0]['age']}"
 	end	
 end
