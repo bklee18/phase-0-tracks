@@ -44,3 +44,37 @@ get '/students/:id' do
   student = db.execute("SELECT * FROM students WHERE id=?", [params[:id]])[0]
   student.to_s
 end
+
+get '/contact' do
+	"123 Brian Street<br>Briville, USA"
+end
+
+get '/great_job/' do
+	"Great job, #{params[:name]}"
+end
+
+get '/:number1/add/:number2' do
+	number1 = params[:number1].to_i
+	number2 = params[:number2].to_i
+	number_sum = number1 + number2
+	number_sum.to_s
+end
+
+# Enter any part of the name, and will search students.db for matching name and return result.
+get '/:name' do
+	student_names = db.execute("SELECT id, name FROM students")
+	id = -1
+	student_names.each do |student|
+		if student['name'].include?(params[:name])
+			id = student['id']
+		end
+	end
+
+	if id == -1
+		"Name not found!"
+	else
+		student = db.execute("SELECT * FROM students WHERE id = #{id}")
+		p student
+		"ID: #{student[0]['id']} <br>Name: #{student[0]['name']} <br>Campus: #{student[0]['campus']} <br>Age: #{student[0]['age']}"
+	end	
+end
