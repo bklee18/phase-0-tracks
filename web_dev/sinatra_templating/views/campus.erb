@@ -11,5 +11,12 @@
     <% end %>
   </ul>
   <p>Click <a href="campus/new">here</a> to add a new campus for DBC WORLD DOMINATION!!!</p>
+  <br>
+  <h2>List of campuses taken from campuses table in students.db</h2>
+  <ol>
+    <% @campuses_from_campuses_table.each do |campus| %>
+    <li><%= campus %></li>
+    <% end %>
+  </ol>
 </body>
 </html>

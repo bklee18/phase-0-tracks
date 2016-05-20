@@ -37,6 +37,9 @@ get '/campuses' do
       @campuses_from_students_db_non_repeat << campus['campus']
     end
   end
+  
+  # Now to pull campuses from campuses table instead of students table
+  @campuses_from_campuses_table = db.execute("SELECT * FROM campuses")
   erb :campus
 end
 
